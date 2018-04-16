@@ -1,3 +1,11 @@
 {
+    "rules": {
+        "import/no-unresolved": [
+          "error",
+          {
+            "ignore": [ "react-native"]
+          }
+        ]
+    },
     "extends": "rallycoding"
 }

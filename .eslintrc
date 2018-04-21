@@ -3,9 +3,10 @@
         "import/no-unresolved": [
           "error",
           {
-            "ignore": [ "react-native"]
+            "ignore": ["react-native"]
           }
-        ]
+        ],
+        "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }]
     },
     "extends": "rallycoding"
 }

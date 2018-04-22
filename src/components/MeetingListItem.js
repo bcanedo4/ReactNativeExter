@@ -4,14 +4,14 @@ import { CardSection } from './common';
 
 class MeetingListItem extends Component {
     render() {
-        const { meetingName } = this.props.meetingName;
+        const { name } = this.props.meeting;
 
         return (
             <TouchableWithoutFeedback>
                 <View>
                     <CardSection>
                         <Text style={styles.titleStyle}>
-                            {meetingName}
+                            {name}
                         </Text>
                     </CardSection>
                 </View>

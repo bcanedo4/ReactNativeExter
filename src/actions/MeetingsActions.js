@@ -13,12 +13,12 @@ export const meetingUpdate = ({ prop, value }) => {
     };
 };
 
-export const meetingCreate = ({ name, location, time, group }) => {
+export const meetingCreate = ({ name, location, day, group }) => {
     const { currentUser } = firebase.auth();
 
     return (dispatch) => {
         firebase.database().ref(`/users/${currentUser.uid}/meetings`)
-        .push({ name, location, time, group })
+        .push({ name, location, day, group })
         .then(() => {
             dispatch({ type: MEETING_CREATE });
             Actions.pop();

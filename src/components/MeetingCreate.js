@@ -6,9 +6,9 @@ import MeetingForm from './MeetingForm';
 
 class MeetingCreate extends Component {
     onButtonPress() {
-        const { name, location, time, group } = this.props;
+        const { name, location, day, group } = this.props;
 
-        this.props.meetingCreate({ name, location, time, group });
+        this.props.meetingCreate({ name, location, day, group });
     }
 
     render() {
@@ -26,9 +26,9 @@ class MeetingCreate extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { name, location, time, group } = state.meetingForm;
+    const { name, location, day, group } = state.meetingForm;
 
-    return { name, location, time, group };
+    return { name, location, day, group };
 };
 
 export default connect(mapStateToProps, {

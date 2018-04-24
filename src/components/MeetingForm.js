@@ -1,10 +1,29 @@
+import moment from 'moment';
 import React, { Component } from 'react';
-import { View, Text, Picker } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import { connect } from 'react-redux';
 import { meetingUpdate } from '../actions';
 import { CardSection, Input } from './common';
 
 class MeetingForm extends Component {
+    state = {
+        isDateTimePickerVisible: false,
+    };
+    
+    showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+    
+    hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+    
+    handleDatePicked = (date) => {
+        const value = moment(date).format('MMMM, Do YYYY HH:mm');
+        this.props.meetingUpdate({
+            prop: 'day', value
+        });
+
+        this.hideDateTimePicker();  
+    };
+
     render() {
         return (
             <View>
@@ -29,23 +48,19 @@ class MeetingForm extends Component {
                         })}
                     />
                 </CardSection>
-                
-                <CardSection style={{ flexDirection: 'column' }}>
-                    <Text style={styles.pickerTextStyle}>Time</Text>
-                    <Picker
-                        selectedValue={this.props.time}
-                        onValueChange={value => this.props.meetingUpdate({
-                            prop: 'time', value
-                        })}
-                    >
-                        <Picker.Item label="Monday" value="Monday" />
-                        <Picker.Item label="Tuesday" value="Tuesday" />
-                        <Picker.Item label="Wednesday" value="Wednesday" />
-                        <Picker.Item label="Thursday" value="Thursday" />
-                        <Picker.Item label="Friday" value="Friday" />
-                        <Picker.Item label="Saturday" value="Saturday" />
-                        <Picker.Item label="Sunday" value="Sunday" />
-                    </Picker>
+
+                <CardSection>
+                    <View style={{ flex: 1 }}>
+                        <TouchableOpacity onPress={this.showDateTimePicker}>
+                            <Text>Show DatePicker</Text>
+                        </TouchableOpacity>
+                        <DateTimePicker
+                            mode="datetime"
+                            isVisible={this.state.isDateTimePickerVisible}
+                            onConfirm={this.handleDatePicked}
+                            onCancel={this.hideDateTimePicker}
+                        />
+                    </View>
                 </CardSection>
 
                 {/* temporarily input */}
@@ -64,17 +79,10 @@ class MeetingForm extends Component {
     }
 }
 
-const styles = {
-    pickerTextStyle: {
-        fontSize: 18,
-        paddingLeft: 20
-    }
-};
-
 const mapStateToProps = (state) => {
-    const { name, location, time, group } = state.meetingForm;
+    const { name, location, day, group } = state.meetingForm;
 
-    return { name, location, time, group };
+    return { name, location, day, group };
 };
 
 export default connect(mapStateToProps, { meetingUpdate })(MeetingForm);

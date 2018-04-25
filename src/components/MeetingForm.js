@@ -52,8 +52,9 @@ class MeetingForm extends Component {
                 <CardSection>
                     <View style={{ flex: 1 }}>
                         <TouchableOpacity onPress={this.showDateTimePicker}>
-                            <Text>Show DatePicker</Text>
+                            <Text style={styles.pickerTextStyle}>Show DatePicker</Text>
                         </TouchableOpacity>
+                        <Text style={styles.pickerTextStyle}>{this.props.day}</Text>
                         <DateTimePicker
                             mode="datetime"
                             isVisible={this.state.isDateTimePickerVisible}
@@ -78,6 +79,13 @@ class MeetingForm extends Component {
         );
     }
 }
+
+const styles = {
+    pickerTextStyle: {
+        fontSize: 18,
+        paddingLeft: 20
+    }
+};
 
 const mapStateToProps = (state) => {
     const { name, location, day, group } = state.meetingForm;

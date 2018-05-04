@@ -70,3 +70,15 @@ export const meetingSave = ({ name, location, day, group, uid }) => {
         });
     };
 };
+
+export const meetingDelete = ({ uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return () => {
+        firebase.database().ref(`/users/${currentUser.uid}/meetings/${uid}`)
+            .remove()
+            .then(() => {
+                Actions.pop();
+            });
+    };
+};

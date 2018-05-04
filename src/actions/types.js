@@ -6,3 +6,5 @@ export const LOGIN_USER = 'login_user';
 export const MEETING_UPDATE = 'meeting_update';
 export const MEETING_CREATE = 'meeting_create';
 export const MEETINGS_FETCH_SUCCESS = 'meetings_fetch_success';
+export const MEETING_SAVE_SUCCESS = 'meeting_save_success';
+export const MEETING_ADD_MEMBERS = 'meeting_add_members';

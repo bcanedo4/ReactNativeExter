@@ -70,11 +70,12 @@ class MeetingForm extends Component {
                         label="Group"
                         placeholder="Frontend Developers"
                         value={this.props.group}
-                        onChangeText={value => this.props.meetingUpdate({
-                            prop: 'group', value
+                        onChangeText={value => this.props.meetingUpdate({ 
+                            prop: 'group', value 
                         })}
                     />
                 </CardSection>
+            
             </View>
         );
     }
